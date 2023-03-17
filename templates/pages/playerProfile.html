@@ -1,0 +1,187 @@
+{% extends 'base/header.html' %}
+
+{% block body %}
+
+
+    <div class="container py-3 nextup-container">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body p-0">
+
+                    <!--header-->
+                    <div class="nextup-header text-center">
+                        <div class="float-start d-inline nextup-title">
+                            <img src="/static/images/club-logo.png" style="margin-right: 8px !important;" alt="club-logo" width="45"/> {{ request.user }}
+                        </div>
+                        <img src="/static/images/logo.png" alt="logo" style="margin-right: 35px !important;" width="130">
+                    </div>
+                    <!--end of header-->
+
+                    <!--left Nav-->
+                    <div class="row">
+                        <div class="col-1" style="display: inline !important;">
+                            {% include 'base/left-nav.html' %}
+                        </div>
+                        <!--endof left Nav-->
+
+                        <!--main contents-->
+                        <div class="col mt-5 mx-5 bg-light px-5 py-5 player-profile" style="border-radius: 25px;display: inline !important;">
+
+                            {% comment %} <h5 class=" py-3"><span class="nextup-title mr-3" style="margin-right: 8px;">Player Profile</span></h5> {% endcomment %}
+
+
+                            <div class="row text-center">
+
+
+                                <div class="col-lg order-sm-2">
+                                    <img src="{{ player.pfp.url }}" width="90" height="90" class="rounded-circle object-fit-cover mb-2"/>
+                                    <h5 class="my-2 mx-3 pb-2" style="border-bottom:2px solid #222;">{{player.name}}</h5> 
+                                    <h6 class="my-3 mx-3" style="font-weight: bold; font-size: 80%">{{player.team}}</h6>
+                                    <div class="text-start px-2 pb-1 pt-2 mt-3" style="background:#635985;color:white;border-top-left-radius:8px;border-top-right-radius:8px">
+                                        <i class="bi bi-balloon mr-4"></i>
+                                        <font style="margin-left:5px">DOB</font>
+                                        <font class="float-end">{{player.dob}}</font>
+                                    </div>
+
+                                    <div class="text-start px-2 pb-2" style="background:#635985;color:white;">
+                                        <i class="bi bi-geo-alt mr-4"></i>
+                                        {% comment %} <font style="margin-left:5px">Birth Place</font> {% endcomment %}
+                                        <font class="float-end">{{player.pob}}</font>
+                                    </div>
+
+                                    <div class="text-start px-2 py-2 mt-1" style="background:#393053;color:white;">
+                                        <i class="bi bi-arrows-move mr-4"></i>
+                                        <font style="margin-left:5px">Position</font>
+                                        <font class="float-end">{{player.position}}</font>
+                                    </div>
+
+                                    <div class="text-start px-2 py-2 mt-1" style="background:#443C68;color:white;">
+                                        <i class="bi bi-hourglass-split mr-4"></i>
+                                        <font style="margin-left:5px">Age</font>
+                                        <font class="float-end">{{player.age}}</font>
+                                    </div>
+
+                                    <div class="text-start px-2 py-2 mt-1" style="background:#393053;color:white;">
+                                        <i class="bi bi-arrow-left-right mr-4"></i>
+                                        <font style="margin-left:5px">Preffered Foot</font>
+                                        <font class="float-end">{% if player.isPreferredFootRight == 1 %}R {% else %}L{% endif %}</font>
+                                    </div>
+
+                                    <div class="text-start px-2 py-2 mt-1" style="background:#443C68;color:white;">
+                                        <i class="bi bi-controller mr-4"></i>
+                                        <font style="margin-left:5px">Games</font>
+                                        <font class="float-end">{{player.gamesPlayed}}</font>
+                                    </div>
+
+                                    <div class="text-start px-2 py-2 mt-1" style="background:#393053;color:white;">
+                                        <i class="bi bi-check2-circle mr-4"></i>
+                                        <font style="margin-left:5px">Goals</font>
+                                        <font class="float-end">{{player.goals}}</font>
+                                    </div>
+
+                                    <div class="text-start px-2 py-2 mt-1" style="background:#443C68;color:white;border-bottom-left-radius:8px;border-bottom-right-radius:8px">
+                                        <i class="bi bi-hand-thumbs-up mr-4"></i>
+                                        <font style="margin-left:5px">Assists</font>
+                                        <font class="float-end">{{player.assists}}</font>
+                                    </div>
+
+                                    
+                                </div>
+
+
+                                <div class="col-lg order-sm-1">
+                                    <h5 class="nextup-title text-start mb-3">Image gallery</h5>
+                                    {% for image in images %}
+  <img src="{{ image.urls.regular }}" alt="{{ image.alt_description }}" width="100">
+{% endfor %}
+
+                                </div>
+                                
+                                <div class="col-lg order-sm-3">
+                                    C
+                                </div>
+                            </div>
+
+                            <!--end of calendar-->
+
+                            
+
+
+                        </div>
+                    </div>
+
+
+                    
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+<style>
+
+    .player-profile {
+        font-family: 'Jost', sans-serif !important;
+    }
+
+
+
+    .search-query-list{
+        background-color: #fff;
+        color: #252525;
+        padding:10px;
+        border-radius: 10px;
+        margin: 8px 0px;
+    }
+
+    .nextup-calbox {
+        /* border: 1px solid #222; */
+        border-radius: 10px;
+        background-color: #fff;
+        padding: 4px 4px 4px 4px;
+        
+    }
+    
+    .nextup-content {
+        border-radius: 10px;
+        background-color: #fff;
+        padding: 25px;
+
+    }
+
+    .nextup-calbox ul li {
+        list-style: none;
+        display: inline-block;
+        margin: 10px 5px 0px 5px;
+        padding: 25px 20px 20px 20px;
+        height: 80px;
+        width: 80px;
+        align-items:center;
+        text-align: center;
+        background-color: #EFEFEF;
+        color: #222222;
+    }
+
+    .nextup-container .nextup-header {
+        background-color: #fff;
+        padding: 15px;
+        border-bottom: 3px solid #222222;
+        color: #222222;
+        font-family: 'Alegreya Sans', sans-serif;
+        
+    }
+    .nextup-container .card {
+        border: none !important;
+        background-color: #efefef;
+    }
+
+</style>
+
+
+
+
+
+
+
+{% endblock body %}
